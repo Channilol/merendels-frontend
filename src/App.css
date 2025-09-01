@@ -1,38 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Teko:wght@300..700&display=swap");
+
+/** VARIABLES */
+:root {
+  /** COLORS */
+  /*? LIGHT COLORS */
+  /*
+  --bg: rgba(253, 252, 252, 255);
+  --text: rgba(26, 26, 26, 255);
+  --primary: rgba(242, 243, 245, 255);
+  --gradient-start: rgba(223, 37, 106, 255);
+  --gradient-end: rgba(38, 146, 239, 255); */
+  /*? DARK COLORS */
+  /*
+  --bg: rgba(26, 26, 26, 255);
+  --text: rgba(253, 252, 252, 255);
+  --primary: rgba(33, 33, 33, 255);
+  --gradient-start: rgba(223, 37, 106, 255);
+  --gradient-end: rgba(38, 146, 239, 255); */
+
+  /** MODERN PROFESSIONAL PALETTE */
+  --bg: rgba(248, 250, 252, 255);
+  --text: rgba(15, 23, 42, 255);
+  --text-secondary: rgba(100, 116, 139, 255);
+  --primary: rgba(255, 255, 255, 255);
+  --secondary: rgba(241, 245, 249, 255);
+  --border: rgba(226, 232, 240, 255);
+  --border-light: rgba(241, 245, 249, 255);
+  --hover: rgba(236, 254, 255, 255);
+  --accent: rgba(14, 165, 233, 255);
+  --accent-light: rgba(125, 211, 252, 255);
+  --logo-orange: rgba(252, 220, 188, 255);
+  --logo-green: rgba(151, 191, 12, 255);
+  
+  /** SEMANTIC COLORS */
+  --success: rgba(16, 185, 129, 255);
+  --danger: rgba(239, 68, 68, 255);
+  --warning: rgba(245, 158, 11, 255);
+  --info: rgba(59, 130, 246, 255);
+  
+  /** GRADIENT COLORS */
+  --gradient-start: rgba(252, 220, 188, 255);
+  --gradient-end: rgba(151, 191, 12, 255);
+
+  /** FONT */
+  --open-sans: "Open Sans", system-ui;
+  --major-mono: "Major Mono Display", system-ui;
+
+  /** BORDER RADIUS  */
+  --border-radius-s: 12px;
+  --border-radius-m: 16px;
+  --border-radius-l: 20px;
+  --border-radius-xl: 24px;
+  --border-radius-xxl: 32px;
+
+  /** PROFESSIONAL SHADOWS */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /** MODERN GRADIENTS */
+  --gradient-subtle: linear-gradient(135deg, rgba(248, 250, 252, 1), rgba(241, 245, 249, 1));
+  --gradient-accent: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(125, 211, 252, 0.04));
+  --gradient-modern: linear-gradient(135deg, rgba(14, 165, 233, 1), rgba(59, 130, 246, 1));
+  
+  /** PROFESSIONAL TRANSITIONS */
+  --transition-fast: all 0.15s ease-out;
+  --transition-smooth: all 0.2s ease-in-out;
+  --transition-slow: all 0.3s ease-in-out;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: var(--open-sans);
+  color: var(--text);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* Professional Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--text);
+}
+
+h1 { font-size: 32px; }
+h2 { font-size: 24px; }
+h3 { font-size: 20px; }
+h4 { font-size: 18px; }
+h5 { font-size: 16px; }
+h6 { font-size: 14px; }
+
+p, span, div {
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.text-primary { color: var(--text); }
+.text-secondary { color: var(--text-secondary); }
+.text-accent { color: var(--accent); }
+.text-success { color: var(--success); }
+.text-danger { color: var(--danger); }
+.text-warning { color: var(--warning); }
+
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+.text-sm { font-size: 14px; }
+.text-base { font-size: 16px; }
+.text-lg { font-size: 18px; }
+.text-xl { font-size: 20px; }
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  min-width: 100vw;
   min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--bg);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes buttonClick {
   from {
-    transform: rotate(0deg);
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.925);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }

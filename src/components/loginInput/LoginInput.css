@@ -1,0 +1,95 @@
+.login-input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.4s ease-out calc(0.3s + var(--animation-delay, 0s)) both;
+}
+
+.login-input-container:nth-child(1) {
+  --animation-delay: 0s;
+}
+
+.login-input-container:nth-child(2) {
+  --animation-delay: 0.1s;
+}
+
+.login-input-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.login-input-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--text-secondary);
+  transition: var(--transition-smooth);
+  z-index: 2;
+}
+
+.login-input-container:hover .login-input-icon,
+.login-input-container.focused .login-input-icon {
+  color: var(--accent);
+}
+
+.login-input {
+  height: 48px;
+  width: 100%;
+  background: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-s);
+  box-shadow: var(--shadow-sm);
+  padding: 12px 16px 12px 44px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text);
+  transition: var(--transition-smooth);
+  outline: none;
+  position: relative;
+}
+
+.login-input::placeholder {
+  color: var(--text-secondary);
+  transition: var(--transition-smooth);
+}
+
+.login-input:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.login-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), var(--shadow-sm);
+  background: var(--primary);
+}
+
+/* Stati di validazione */
+.login-input.valid {
+  border-color: var(--success);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1), var(--shadow-sm);
+}
+
+.login-input.invalid {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1), var(--shadow-sm);
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
