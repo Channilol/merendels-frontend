@@ -8,4 +8,17 @@ function setHierarchyLevel(level) {
   return { type: "SET_HIERARCHY_LEVEL", payload: level };
 }
 
-export { setUserId, setUserEmail, setHierarchyLevel };
+function setActiveCategory(category) {
+  return { type: "SET_ACTIVE_CATEGORY", payload: category };
+}
+function setCategories(categories) {
+  return { type: "SET_CATEGORIES", payload: categories };
+}
+
+export {
+  setUserId,
+  setUserEmail,
+  setHierarchyLevel,
+  setActiveCategory,
+  setCategories,
+};

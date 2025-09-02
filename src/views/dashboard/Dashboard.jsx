@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import {
   setUserId,
@@ -9,39 +9,66 @@ import {
 } from "../../redux/actions/index";
 import LoginBox from "../../components/loginBox/LoginBox";
 import Sidebar from "../../components/sidebar/Sidebar";
+import DashboardHome from "../../components/dashboardHome/DashboardHome";
+import DashboardProfile from "../../components/dashboardProfile/DashboardProfile";
+import DashboardTimbrature from "../../components/dashboardTimbrature/DashboardTimbrature";
+import DashboardRequests from "../../components/dashboardRequests/DashboardRequests";
 
 export default function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [checkingUser, setCheckingUser] = useState(true);
+  const [activeCategState, setActiveCategState] = useState("");
   const dispatch = useDispatch();
+  const selectorActiveCategory = useSelector(
+    (state) => state.categoryReducer.activeCategory
+  );
+  const categoriesComponents = {
+    home: <DashboardHome />,
+    profile: <DashboardProfile />,
+    timbrature: <DashboardTimbrature />,
+    requests: <DashboardRequests />,
+  };
 
   // Check se l'utente era giá loggato
   useEffect(() => {
-    let token = localStorage.getItem("token-merendels");
-    if (token && token !== "") {
-      const decoded = jwtDecode(token);
-      console.log(decoded);
-      if (!isTokenExpired(token)) {
-        console.log("token valido");
-        if (decoded.user_id) {
-          dispatch(setUserId(decoded.user_id));
-          console.log("settato user_id");
+    // Delay per prevenire ResizeObserver error
+    const timer = setTimeout(() => {
+      let token = localStorage.getItem("token-merendels");
+      if (token && token !== "") {
+        const decoded = jwtDecode(token);
+        console.log(decoded);
+        if (!isTokenExpired(token)) {
+          console.log("token valido");
+          if (decoded.user_id) {
+            dispatch(setUserId(decoded.user_id));
+            console.log("settato user_id");
+          }
+          if (decoded.email) {
+            dispatch(setUserEmail(decoded.email));
+            console.log("settata email");
+          }
+          if (decoded.hierarchy_level) {
+            dispatch(setHierarchyLevel(decoded.hierarchy_level));
+            console.log("settato hierarchy level");
+          }
+          setIsLoggedIn(true);
+          setCheckingUser(false);
+        } else {
+          console.log("token scaduto, rifare login");
         }
-        if (decoded.email) {
-          dispatch(setUserEmail(decoded.email));
-          console.log("settata email");
-        }
-        if (decoded.hierarchy_level) {
-          dispatch(setHierarchyLevel(decoded.hierarchy_level));
-          console.log("settato hierarchy level");
-        }
-        setIsLoggedIn(true);
       } else {
-        console.log("token scaduto, rifare login");
+        console.log("token non presente in memoria");
+        setCheckingUser(false);
       }
-    } else {
-      console.log("token non presente in memoria");
-    }
-  }, []);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [dispatch]);
+
+  useEffect(() => {
+    setActiveCategState(selectorActiveCategory);
+    console.log(selectorActiveCategory);
+  }, [selectorActiveCategory]);
 
   function isTokenExpired(token) {
     try {
@@ -56,11 +83,16 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="dashboard-container">
-      {isLoggedIn ? (
+    <div className="dashboard">
+      {checkingUser ? (
         <>
-          <Sidebar />
+          <div className="loading-container"></div>
         </>
+      ) : isLoggedIn ? (
+        <div className="dashboard-container">
+          <Sidebar />
+          {categoriesComponents[activeCategState]}
+        </div>
       ) : (
         <LoginBox setIsLoggedIn={() => setIsLoggedIn(true)} />
       )}

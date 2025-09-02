@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./LoginBox.css";
 import Logo from "../../assets/logo_merendels.png";
 import LoginInput from "../loginInput/LoginInput";
@@ -56,7 +56,7 @@ export default function LoginBox({ setIsLoggedIn }) {
 
         const data = await response.json();
         localStorage.setItem("token-merendels", data.data.token);
-        console.log(data);
+        console.log("Logged in");
         setLoggingStates(false, false, true);
         return data;
       } catch (error) {
@@ -71,6 +71,14 @@ export default function LoginBox({ setIsLoggedIn }) {
     setIsError(error);
     setIsSuccess(success);
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      setTimeout(() => {
+        setIsLoggedIn();
+      }, 250);
+    }
+  }, [isSuccess]);
 
   return (
     <div className="login-container">

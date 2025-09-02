@@ -9,6 +9,7 @@
   --primary: rgba(11, 153, 96, 1);
   --secondary: rgba(255, 154, 92, 1);
   --tertiary: rgba(255, 154, 92, 1);
+  --border: rgba(245, 245, 245, 1);
   --logo-orange: rgba(252, 220, 188, 1);
   --logo-green: rgba(151, 191, 12, 1);
 
@@ -39,6 +40,7 @@
   --transition-fast: all 0.15s ease-out;
   --transition-smooth: all 0.2s ease-in-out;
   --transition-slow: all 0.3s ease-in-out;
+  --transition-fluid: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 * {
