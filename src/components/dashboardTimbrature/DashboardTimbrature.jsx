@@ -30,7 +30,7 @@ export default function DashboardTimbrature() {
         console.log(`API Error: ${response.status} - ${errorData}`);
       }
       const data = await response.json();
-      if (data.data.length > 0) setTimbratureHistory(data.data);
+      if (data.data && data.data.length > 0) setTimbratureHistory(data.data);
       console.log(data);
       return;
     } catch (error) {
@@ -81,10 +81,14 @@ export default function DashboardTimbrature() {
               <TimbratureHistoryCard key={item.id} timbrature={item} />
             ))
           ) : (
-            <div className="empty-timbrature-history">
-              <FiX size={80} />
-              <p>Storico timbrature vuoto</p>
-            </div>
+            <>
+              <div></div>
+              <div></div>
+              <div className="empty-timbrature-history">
+                <FiX size={80} />
+                <p>Storico timbrature vuoto</p>
+              </div>
+            </>
           )}
         </div>
       </div>

@@ -7,7 +7,7 @@ export default function DashboardHome() {
   return (
     <div className="dashboard-right-section">
       <div className="dashboard-right-header">
-        <p className="dashboard-welcome-message">Bentornato</p>
+        <p className="dashboard-welcome-message">Bentornato {user.nome}</p>
         <p className="dashboard-welcome-message user-email">{user.email}</p>
       </div>
     </div>
