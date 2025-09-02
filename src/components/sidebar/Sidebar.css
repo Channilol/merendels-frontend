@@ -1,5 +1,6 @@
 .sidebar {
-  width: 80px;
+  min-width: 80px;
+  /* width: 80px; */
   height: 100%;
   background-color: var(--primary);
   border-radius: var(--border-radius-xl);
@@ -13,7 +14,7 @@
 }
 
 .sidebar.expanded {
-  width: 200px;
+  min-width: 200px;
 }
 
 .sidebar-logo-container {

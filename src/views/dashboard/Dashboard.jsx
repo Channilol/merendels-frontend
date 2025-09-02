@@ -67,7 +67,6 @@ export default function Dashboard() {
 
   useEffect(() => {
     setActiveCategState(selectorActiveCategory);
-    console.log(selectorActiveCategory);
   }, [selectorActiveCategory]);
 
   function isTokenExpired(token) {

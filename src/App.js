@@ -3,6 +3,7 @@ import "./App.css";
 import Dashboard from "./views/dashboard/Dashboard";
 
 function App() {
+  console.log(process.env.REACT_APP_BACKEND_URL);
   return (
     <BrowserRouter>
       <div className="App">

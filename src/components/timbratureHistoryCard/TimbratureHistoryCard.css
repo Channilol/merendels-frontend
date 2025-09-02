@@ -1,0 +1,44 @@
+.timbrature-history-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 23%;
+  height: 200px;
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--shadow-xl);
+  background-color: var(--bg);
+}
+
+.history-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ENTRATA {
+  background-color: var(--primary);
+  color: var(--bg);
+  padding: 8px;
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--shadow-md);
+}
+
+.USCITA {
+  background-color: var(--secondary);
+  color: var(--bg);
+  padding: 8px;
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--shadow-md);
+}
+
+.location-type {
+  display: flex;
+  gap: 8px;
+}
+
+.history-card-date {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

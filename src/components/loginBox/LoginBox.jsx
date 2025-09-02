@@ -31,6 +31,7 @@ export default function LoginBox({ setIsLoggedIn }) {
     setLoggingStates(true, false, false);
 
     console.log("Login attempt:", { email, password });
+    console.log(`${process.env.REACT_APP_BACKEND_URL}/auth/login`);
 
     // Piccolo delay per prevenire problema con ResizeObserver
     setTimeout(async () => {
@@ -39,14 +40,16 @@ export default function LoginBox({ setIsLoggedIn }) {
           email: email,
           password: password,
         };
-
-        const response = await fetch("http://localhost:8080/api/auth/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(obj),
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(obj),
+          }
+        );
 
         if (!response.ok) {
           setLoggingStates(false, true, false);

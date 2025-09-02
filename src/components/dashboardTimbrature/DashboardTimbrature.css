@@ -1,0 +1,75 @@
+.history-section,
+.create-timbrature-section {
+  height: 50%;
+  width: 100%;
+  border-radius: var(--border-radius-m);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+}
+
+.history-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  height: 100%;
+  width: calc(100% - 12px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+}
+
+.empty-timbrature-history {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  font-size: 24px;
+  opacity: 0.33;
+}
+
+.locations-section {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  gap: 24px;
+  padding: 12px;
+}
+
+.office,
+.smart {
+  width: 100%;
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 32px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-fluid);
+}
+
+.office:hover {
+  background-color: var(--primary);
+}
+
+.office:hover svg *,
+.office:hover p {
+  color: var(--bg);
+}
+
+.smart:hover {
+  background-color: var(--secondary);
+}
+
+.smart:hover svg *,
+.smart:hover p {
+  color: var(--bg);
+}
