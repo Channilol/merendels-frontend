@@ -1,5 +1,4 @@
 .login-container {
-  height: auto;
   width: 420px;
   padding: 48px 40px;
   margin: auto;
@@ -7,16 +6,14 @@
   gap: 24px;
   flex-direction: column;
   align-items: center;
-  background: var(--primary);
+  background: var(--bg);
   border-radius: var(--border-radius-l);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-xl);
+  position: relative;
+  overflow: hidden;
   transition: var(--transition-smooth);
   animation: fadeInUp 0.4s ease-out;
-  position: relative;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  overflow: hidden;
 }
 
 .login-container::before {
@@ -25,12 +22,12 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 6px;
-  background: var(--gradient-modern);
+  height: 10px;
+  background: var(--primary);
 }
 
 .login-container:hover {
-  box-shadow: var(--shadow-xl), 0 0 40px rgba(14, 165, 233, 0.1);
+  box-shadow: var(--shadow-xl), 0 0 10px rgba(49, 53, 51, 0.1);
 }
 
 .login-logo {
@@ -71,11 +68,43 @@
   width: 100%;
 }
 
+.error-box {
+  height: 0px;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.error-box.active {
+  height: 60px;
+  width: 100%;
+  margin-top: 32px;
+  max-width: 400px;
+  opacity: 1;
+  background-color: var(--danger);
+  box-shadow: var(--shadow-md);
+  border: none;
+  border-radius: var(--border-radius-m);
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.error-box > p,
+.error-box svg * {
+  color: var(--bg);
+}
+
 .login-button {
   width: 100%;
   height: 50px;
-  background: var(--gradient-modern);
-  color: white;
+  background: var(--primary);
+  color: var(--bg);
   border: none;
   border-radius: var(--border-radius-m);
   font-size: 16px;
@@ -87,63 +116,24 @@
   cursor: pointer;
   transition: var(--transition-smooth);
   box-shadow: var(--shadow-md);
-  position: relative;
-  margin-top: 8px;
+  margin-top: 32px;
   animation: fadeInUp 0.4s ease-out 0.5s both;
   overflow: hidden;
 }
 
-.login-button::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 70%
-  );
-  transform: translateX(-100%);
-  transition: transform 0.6s;
-}
-
-.login-button:hover::after {
-  transform: translateX(100%);
-}
-
-.login-button svg,
 .login-button svg * {
   color: white !important;
 }
 
-.login-button:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-lg), 0 0 20px rgba(14, 165, 233, 0.3);
-}
-
-.login-button:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
+.login-button:focus {
+  scale: 0.95;
 }
 
 .login-button:disabled {
-  background: var(--secondary);
-  color: var(--text-secondary);
+  background: var(--text-secondary);
+  color: var(--bg);
   cursor: not-allowed;
   transform: none !important;
   box-shadow: var(--shadow-sm);
-  opacity: 0.7;
-}
-
-.login-button:disabled:hover {
-  background: var(--secondary);
-  transform: none !important;
-  box-shadow: var(--shadow-sm);
-}
-
-.login-button:disabled::after {
-  display: none;
+  opacity: 0.33 !important;
 }

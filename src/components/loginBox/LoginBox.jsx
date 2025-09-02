@@ -1,15 +1,16 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import "./LoginBox.css";
 import Logo from "../../assets/logo_merendels.png";
 import LoginInput from "../loginInput/LoginInput";
-import { FiLogIn } from "react-icons/fi";
+import { FiLogIn, FiCheckCircle, FiAlertCircle } from "react-icons/fi";
 
-export default function LoginBox() {
+export default function LoginBox({ setIsLoggedIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showValidation, setShowValidation] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   function setEmailInput(input) {
     setEmail(input);
@@ -19,57 +20,57 @@ export default function LoginBox() {
     setPassword(input);
   }
 
-  const handleLoginClick = useCallback(
-    async (event) => {
-      if (event && event.preventDefault) {
-        event.preventDefault();
-      }
+  const handleLoginClick = async (event) => {
+    if (event && event.preventDefault) {
+      event.preventDefault();
+    }
 
-      if (isLoading) return; // Prevent multiple clicks
+    if (isLoading || isSuccess) return;
 
-      setShowValidation(true);
-      setIsLoading(true);
-      setIsError(false);
+    setShowValidation(true);
+    setLoggingStates(true, false, false);
 
-      console.log("Login attempt:", { email, password });
+    console.log("Login attempt:", { email, password });
 
-      // Small delay to prevent ResizeObserver issues
-      setTimeout(async () => {
-        try {
-          const obj = {
-            email: email,
-            password: password,
-          };
+    // Piccolo delay per prevenire problema con ResizeObserver
+    setTimeout(async () => {
+      try {
+        const obj = {
+          email: email,
+          password: password,
+        };
 
-          const response = await fetch("http://localhost:8080/api/auth/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(obj),
-          });
+        const response = await fetch("http://localhost:8080/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(obj),
+        });
 
-          if (!response.ok) {
-            setIsLoading(false);
-            setIsError(true);
-            const errorData = await response.text();
-            throw new Error(`API Error: ${response.status} - ${errorData}`);
-          }
-
-          const data = await response.json();
-          setIsLoading(false);
-          setIsError(false);
-          console.log(data);
-          return data;
-        } catch (error) {
-          setIsLoading(false);
-          setIsError(true);
-          console.log(`Unexpected error: ${error}`);
+        if (!response.ok) {
+          setLoggingStates(false, true, false);
+          const errorData = await response.text();
+          throw new Error(`API Error: ${response.status} - ${errorData}`);
         }
-      }, 100);
-    },
-    [email, password, isLoading]
-  );
+
+        const data = await response.json();
+        localStorage.setItem("token-merendels", data.data.token);
+        console.log(data);
+        setLoggingStates(false, false, true);
+        return data;
+      } catch (error) {
+        setLoggingStates(false, true, false);
+        console.log(`Unexpected error: ${error}`);
+      }
+    }, 100);
+  };
+
+  function setLoggingStates(loading, error, success) {
+    setIsLoading(loading);
+    setIsError(error);
+    setIsSuccess(success);
+  }
 
   return (
     <div className="login-container">
@@ -89,6 +90,10 @@ export default function LoginBox() {
           isPassword={true}
           showValidation={showValidation}
         />
+        <div className={`error-box ${isError ? "active" : ""}`}>
+          <FiAlertCircle size={20} />
+          <p>Email o password errate.</p>
+        </div>
         <button
           type="button"
           className="login-button"
@@ -97,9 +102,11 @@ export default function LoginBox() {
         >
           {isLoading ? (
             <>Loading...</>
+          ) : isSuccess ? (
+            <FiCheckCircle size={20} />
           ) : (
             <>
-              <FiLogIn /> Login
+              <FiLogIn size={20} /> Login
             </>
           )}
         </button>
