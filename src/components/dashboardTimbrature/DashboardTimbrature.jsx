@@ -40,8 +40,11 @@ export default function DashboardTimbrature() {
 
   const createTimbrature = async (location) => {
     let actionType = "ENTRATA";
-    if (timbratureHistory.length === 0) actionType = "ENTRATA";
-    if (timbratureHistory[0].action_type === "ENTRATA") actionType = "USCITA";
+    if (timbratureHistory.length === 0) {
+      actionType = "ENTRATA";
+    } else if (timbratureHistory[0].action_type === "ENTRATA") {
+      actionType = "USCITA";
+    }
     try {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/timbrature`,
