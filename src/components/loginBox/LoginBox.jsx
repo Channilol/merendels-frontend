@@ -3,6 +3,13 @@ import "./LoginBox.css";
 import Logo from "../../assets/logo_merendels.png";
 import LoginInput from "../loginInput/LoginInput";
 import { FiLogIn, FiCheckCircle, FiAlertCircle } from "react-icons/fi";
+import { useDispatch } from "react-redux";
+import {
+  setUserId,
+  setUserEmail,
+  setHierarchyLevel,
+} from "../../redux/actions/index";
+import { jwtDecode } from "jwt-decode";
 
 export default function LoginBox({ setIsLoggedIn }) {
   const [email, setEmail] = useState("");
@@ -11,6 +18,7 @@ export default function LoginBox({ setIsLoggedIn }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const dispatch = useDispatch();
 
   function setEmailInput(input) {
     setEmail(input);
@@ -54,11 +62,17 @@ export default function LoginBox({ setIsLoggedIn }) {
         if (!response.ok) {
           setLoggingStates(false, true, false);
           const errorData = await response.text();
-          throw new Error(`API Error: ${response.status} - ${errorData}`);
+          console.log(`Unexpected error: ${response.status} ${errorData}`);
+          return;
         }
 
         const data = await response.json();
         localStorage.setItem("token-merendels", data.data.token);
+        let token = localStorage.getItem("token-merendels");
+        const decoded = jwtDecode(token);
+        dispatch(setUserId(decoded.user_id));
+        dispatch(setUserEmail(decoded.email));
+        dispatch(setHierarchyLevel(decoded.hierarchy_level));
         console.log("Logged in");
         setLoggingStates(false, false, true);
         return data;

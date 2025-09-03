@@ -91,6 +91,8 @@ export default function DashboardTimbrature() {
                 <FiX size={80} />
                 <p>Storico timbrature vuoto</p>
               </div>
+              <div></div>
+              <div></div>
             </>
           )}
         </div>

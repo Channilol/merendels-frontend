@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 export default function DashboardHome() {
   const user = useSelector((state) => state.userReducer);
+
   return (
     <div className="dashboard-right-section">
       <div className="dashboard-right-header">

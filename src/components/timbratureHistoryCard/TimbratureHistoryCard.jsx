@@ -1,7 +1,7 @@
 import React from "react";
 import "./TimbratureHistoryCard.css";
 import { MdOutlineWork, MdOutlineHomeWork } from "react-icons/md";
-import { FiCalendar, FiClock } from "react-icons/fi";
+import { FiCalendar, FiClock, FiKey } from "react-icons/fi";
 
 export default function TimbratureHistoryCard({ timbrature }) {
   const dateObj = new Date(timbrature.timestamp);
@@ -14,7 +14,9 @@ export default function TimbratureHistoryCard({ timbrature }) {
         <h3 className={`${timbrature.action_type}`}>
           {timbrature.action_type}
         </h3>
-        <h3>#{timbrature.id}</h3>
+        <h3>
+          <FiKey size={20} /> #{timbrature.id}
+        </h3>
       </div>
       <div className="location-type">
         {timbrature.location === "UFFICIO" ? (
@@ -29,7 +31,6 @@ export default function TimbratureHistoryCard({ timbrature }) {
           <FiCalendar /> {dateOnly}
         </div>
         <div>
-          {" "}
           <FiClock /> {timeOnly}
         </div>
       </div>
