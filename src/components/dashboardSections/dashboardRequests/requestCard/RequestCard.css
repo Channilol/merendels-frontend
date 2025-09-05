@@ -1,0 +1,13 @@
+.request-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 23%;
+  min-height: 120px;
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--shadow-lg);
+  background-color: var(--bg);
+  background-color: red;
+}

@@ -1,5 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import "./DashboardRequests.css";
+import LoadingAnimation from "../../loadingAnimation/LoadingAnimation";
+import RequestCard from "./requestCard/RequestCard";
 
 export default function DashboardRequests() {
   const [isLoading, setIsLoading] = useState(false);
@@ -89,6 +91,7 @@ export default function DashboardRequests() {
   useEffect(() => {
     getUserRequests();
   }, []);
+
   useEffect(() => {
     console.log(requests);
   }, [requests]);
@@ -100,11 +103,33 @@ export default function DashboardRequests() {
         <div className="history-content">
           <div className="pending-requests">
             <h3>In attesa</h3>
-            <div className="requests-cards-container"></div>
+            <div className="requests-cards-container">
+              {isLoadingRequests ? (
+                <LoadingAnimation size="large" type="dots" />
+              ) : (
+                <></>
+              )}
+              {requests.length > 0
+                ? requests
+                    .filter((item) => item.status === "PENDING")
+                    .map((item) => <RequestCard request={item} />)
+                : null}
+            </div>
           </div>
           <div className="requests-history">
             <h3>Risolte</h3>
-            <div className="requests-cards-container"></div>
+            <div className="requests-cards-container">
+              {isLoadingRequests ? (
+                <LoadingAnimation size="large" type="dots" />
+              ) : (
+                <></>
+              )}
+              {requests.length > 0
+                ? requests
+                    .filter((item) => item.status !== "PENDING")
+                    .map((item) => <RequestCard request={item} />)
+                : null}
+            </div>
           </div>
         </div>
       </div>

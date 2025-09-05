@@ -20,7 +20,9 @@
 
 .pending-requests,
 .requests-history {
-  height: 100%;
+  height: calc(
+    100% - 36px - 25px
+  ); /* 36px (12px padding-top + 12px padding-bottom + 12px gap) 25px (h3 height) */
   width: 100%;
   border-radius: var(--border-radius-m);
   border: 1px solid var(--border);
@@ -32,19 +34,11 @@
 }
 
 .requests-cards-container {
+  width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
-/* <div className="dashboard-right-section">
-      <div className="requests-history-section">
-        requests
-        <div className="requests-history">history</div>
-        <div className="pending-requests">pending</div>
-      </div>
-      <div className="create-request-section">
-        crea request
-        <div className="requests-create-form">form</div>
-      </div>
-    </div> */
