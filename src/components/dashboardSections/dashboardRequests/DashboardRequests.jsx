@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import "./DashboardRequests.css";
 
 export default function DashboardRequests() {
@@ -8,9 +8,10 @@ export default function DashboardRequests() {
   const [isLoadingRequests, setIsLoadingRequests] = useState(false);
   const [startDate, setStartDate] = useState("2025-09-15");
   const [endDate, setEndDate] = useState("2025-09-16");
+  const [requests, setRequests] = useState([]);
   const [request, setRequest] = useState({
-    start_date: validateDate(startDate),
-    end_date: validateDate(endDate),
+    start_date: validateDate(startDate, true),
+    end_date: validateDate(endDate, false),
     request_type: "FERIE",
     notes: "Prova ferie",
   });
@@ -27,8 +28,8 @@ export default function DashboardRequests() {
     setIsSuccess(success);
   }
 
-  function validateDate(date) {
-    return `${date}T00:00:00Z`;
+  function validateDate(date, isStartDate) {
+    return isStartDate ? `${date}T00:00:00Z` : `${date}T23:59:59Z`;
   }
 
   const createRequest = async () => {
@@ -76,8 +77,8 @@ export default function DashboardRequests() {
         return;
       }
       const data = await response.json();
-      console.log(data);
-      return data;
+      setRequests(data.data);
+      return;
     } catch (error) {
       console.log(`Unexpected error: ${error}`);
     } finally {
@@ -85,12 +86,31 @@ export default function DashboardRequests() {
     }
   };
 
+  useEffect(() => {
+    getUserRequests();
+  }, []);
+  useEffect(() => {
+    console.log(requests);
+  }, [requests]);
+
   return (
     <div className="dashboard-right-section">
-      <div className="requests-history-container"></div>
-      <div className="requests-create-form">
-        <div onClick={createRequest}>Crea request</div>
-        <div onClick={getUserRequests}>Get user requests</div>
+      <div className="requests-history-section">
+        <h1>Richieste</h1>
+        <div className="history-content">
+          <div className="pending-requests">
+            <h3>In attesa</h3>
+            <div className="requests-cards-container"></div>
+          </div>
+          <div className="requests-history">
+            <h3>Risolte</h3>
+            <div className="requests-cards-container"></div>
+          </div>
+        </div>
+      </div>
+      <div className="create-request-section">
+        crea request
+        <div className="requests-create-form">form</div>
       </div>
     </div>
   );

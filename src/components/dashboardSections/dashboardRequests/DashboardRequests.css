@@ -1,0 +1,50 @@
+.requests-history-section,
+.create-request-section {
+  height: 50%;
+  width: 100%;
+  border-radius: var(--border-radius-m);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+}
+
+.history-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 12px;
+}
+
+.pending-requests,
+.requests-history {
+  height: 100%;
+  width: 100%;
+  border-radius: var(--border-radius-m);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+}
+
+.requests-cards-container {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* <div className="dashboard-right-section">
+      <div className="requests-history-section">
+        requests
+        <div className="requests-history">history</div>
+        <div className="pending-requests">pending</div>
+      </div>
+      <div className="create-request-section">
+        crea request
+        <div className="requests-create-form">form</div>
+      </div>
+    </div> */

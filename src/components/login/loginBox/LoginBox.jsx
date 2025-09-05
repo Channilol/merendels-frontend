@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./LoginBox.css";
-import Logo from "../../assets/logo_merendels.png";
+import Logo from "../../../assets/logo_merendels.png";
 import LoginInput from "../loginInput/LoginInput";
 import { FiLogIn, FiCheckCircle, FiAlertCircle } from "react-icons/fi";
 import { useDispatch } from "react-redux";
@@ -8,7 +8,7 @@ import {
   setUserId,
   setUserEmail,
   setHierarchyLevel,
-} from "../../redux/actions/index";
+} from "../../../redux/actions/index";
 import { jwtDecode } from "jwt-decode";
 
 export default function LoginBox({ setIsLoggedIn }) {

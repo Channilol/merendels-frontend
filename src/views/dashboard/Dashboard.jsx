@@ -7,12 +7,13 @@ import {
   setUserEmail,
   setHierarchyLevel,
 } from "../../redux/actions/index";
-import LoginBox from "../../components/loginBox/LoginBox";
+import LoginBox from "../../components/login/loginBox/LoginBox";
 import Sidebar from "../../components/sidebar/Sidebar";
-import DashboardHome from "../../components/dashboardHome/DashboardHome";
-import DashboardProfile from "../../components/dashboardProfile/DashboardProfile";
-import DashboardTimbrature from "../../components/dashboardTimbrature/DashboardTimbrature";
-import DashboardRequests from "../../components/dashboardRequests/DashboardRequests";
+import DashboardHome from "../../components/dashboardSections/dashboardHome/DashboardHome";
+// import DashboardProfile from "../../components/dashboardProfile/DashboardProfile";
+import DashboardTimbrature from "../../components/dashboardSections/dashboardTimbrature/DashboardTimbrature";
+import DashboardRequests from "../../components/dashboardSections/dashboardRequests/DashboardRequests";
+import DashboardAdmin from "../../components/dashboardSections/dashboardAdmin/DashboardAdmin";
 
 export default function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,10 +24,10 @@ export default function Dashboard() {
     (state) => state.categoryReducer.activeCategory
   );
   const categoriesComponents = {
-    home: <DashboardHome />,
-    profile: <DashboardProfile />,
-    timbrature: <DashboardTimbrature />,
-    requests: <DashboardRequests />,
+    Home: <DashboardHome />,
+    Timbrature: <DashboardTimbrature />,
+    Requests: <DashboardRequests />,
+    Admin: <DashboardAdmin />,
   };
 
   // Check se l'utente era giá loggato

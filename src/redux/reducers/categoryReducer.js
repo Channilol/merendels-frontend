@@ -1,5 +1,5 @@
 const initialState = {
-  activeCategory: "home",
+  activeCategory: "Home",
   categories: [],
 };
 

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./DashboardTimbrature.css";
-import TimbratureHistoryCard from "../timbratureHistoryCard/TimbratureHistoryCard";
+import TimbratureHistoryCard from "./timbratureHistoryCard/TimbratureHistoryCard";
 import { MdOutlineWork, MdOutlineHomeWork } from "react-icons/md";
 import { FiX } from "react-icons/fi";
+import { useAlert, alert } from "../../alert/Alert";
 
 export default function DashboardTimbrature() {
   const [timbratureHistory, setTimbratureHistory] = useState([]);
@@ -11,6 +12,7 @@ export default function DashboardTimbrature() {
     Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
   };
+  const { showAlert } = useAlert();
 
   useEffect(() => {
     fetchHistory(token);
@@ -107,11 +109,41 @@ export default function DashboardTimbrature() {
             : "uscita"}
         </h3>
         <div className="locations-section">
-          <div className="office" onClick={() => handleClick("UFFICIO")}>
+          <div
+            className="office"
+            onClick={() =>
+              showAlert({
+                title: "Conferma timbratura",
+                description: `Vuoi confermare l'${
+                  timbratureHistory.length === 0 ||
+                  timbratureHistory[0].action_type === "USCITA"
+                    ? "ENTRATA"
+                    : "USCITA"
+                } in Ufficio?`,
+                onClose: null,
+                onConfirm: () => handleClick("UFFICIO"),
+              })
+            }
+          >
             <MdOutlineWork size={100} />
             <p>Ufficio</p>
           </div>
-          <div className="smart" onClick={() => handleClick("SMART")}>
+          <div
+            className="smart"
+            onClick={() =>
+              showAlert({
+                title: "Conferma timbratura",
+                description: `Vuoi confermare l'${
+                  timbratureHistory.length === 0 ||
+                  timbratureHistory[0].action_type === "USCITA"
+                    ? "ENTRATA"
+                    : "USCITA"
+                } in Smart working?`,
+                onClose: null,
+                onConfirm: () => handleClick("SMART"),
+              })
+            }
+          >
             <MdOutlineHomeWork size={100} />
             <p>Smart working</p>
           </div>

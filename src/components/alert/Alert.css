@@ -1,0 +1,99 @@
+.alert-background {
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.33);
+  display: none;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.alert-background.visible {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.alert {
+  width: 350px;
+  height: 350px;
+  background-color: var(--bg);
+  border-radius: var(--border-radius-xxl);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+.alert-header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alert-icon-container {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius-m);
+  background-color: rgba(255, 154, 92, 0.2);
+}
+
+.alert-icon-container svg * {
+  color: var(--secondary);
+}
+
+.alert-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.alert-description {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0 24px;
+}
+
+.alert-buttons {
+  display: flex;
+  margin-top: auto;
+  justify-content: space-evenly;
+}
+
+.alert-close-button,
+.alert-confirm-button {
+  width: 110px;
+  height: 50px;
+  border-radius: var(--border-radius-m);
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-fluid);
+}
+
+.alert-confirm-button {
+  background-color: var(--primary);
+  color: var(--bg);
+  opacity: 0.9;
+}
+
+.alert-confirm-button:hover {
+  opacity: 1;
+}
+
+.alert-close-button:hover {
+  background-color: var(--danger);
+  color: var(--bg);
+}

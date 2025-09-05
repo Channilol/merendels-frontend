@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./SidebarSection.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveCategory } from "../../redux/actions/index";
+import { setActiveCategory } from "../../../redux/actions/index";
 
 export default function SidebarSection({ icon, category, isExpanded }) {
   const [isActive, setIsActive] = useState(false);
