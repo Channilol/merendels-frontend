@@ -56,6 +56,7 @@ export default function Dashboard() {
           setCheckingUser(false);
         } else {
           console.log("token scaduto, rifare login");
+          setCheckingUser(false);
         }
       } else {
         console.log("token non presente in memoria");
