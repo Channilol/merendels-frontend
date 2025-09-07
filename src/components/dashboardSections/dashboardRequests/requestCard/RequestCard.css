@@ -3,11 +3,80 @@
   flex-direction: column;
   justify-content: space-between;
   width: 23%;
-  min-height: 120px;
+  min-height: 200px;
   width: 100%;
-  padding: 12px;
+  padding: 4px;
   border-radius: var(--border-radius-m);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   background-color: var(--bg);
-  background-color: red;
+}
+
+.request-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-radius: var(--border-radius-m);
+  font-weight: 600;
+}
+
+.request-card-header.APPROVED {
+  background-color: var(--primary);
+}
+.request-card-header.REJECTED {
+  background-color: var(--danger);
+}
+.request-card-header.REVOKED {
+  background-color: var(--secondary);
+}
+.request-card-header.PENDING {
+  background-color: var(--logo-orange);
+}
+
+.request-card-header * {
+  color: var(--bg);
+}
+
+.request-card-header.PENDING * {
+  color: var(--text);
+}
+
+.request-card-header span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.request-approval-date {
+  width: fit-content;
+  padding: 4px 12px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-s);
+}
+
+.request-notes {
+  flex-grow: 1;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0 8px;
+  gap: 12px;
+  color: var(--text);
+}
+
+.request-notes svg {
+  width: 36px;
+}
+
+.request-card-dates {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.request-card-dates p {
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-s);
 }

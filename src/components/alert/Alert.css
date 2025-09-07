@@ -15,6 +15,7 @@
   justify-content: center;
   align-items: center;
   opacity: 1;
+  animation: fadeIn 0.2s ease-in-out forwards;
 }
 
 .alert {
@@ -27,6 +28,7 @@
   flex-direction: column;
   gap: 24px;
   padding: 24px;
+  animation: fadeInUp 0.3s ease-in-out forwards;
 }
 
 .alert-header {

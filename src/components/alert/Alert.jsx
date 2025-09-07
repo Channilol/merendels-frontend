@@ -78,7 +78,11 @@ export default function Alert() {
     hideAlert();
   };
   return (
-    <div className={`alert-background ${alertState.visible ? "visible" : ""}`}>
+    <div
+      className={`alert-background ${
+        alertState.visible ? "visible" : "hidden"
+      }`}
+    >
       <div className="alert">
         <div className="alert-header">
           <div className="alert-icon-container">

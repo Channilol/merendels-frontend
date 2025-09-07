@@ -1,6 +1,9 @@
 function setUserId(userId) {
   return { type: "SET_USER_ID", payload: userId };
 }
+function setUserName(name) {
+  return { type: "SET_USER_NAME", payload: name };
+}
 function setUserEmail(email) {
   return { type: "SET_USER_EMAIL", payload: email };
 }
@@ -17,6 +20,7 @@ function setCategories(categories) {
 
 export {
   setUserId,
+  setUserName,
   setUserEmail,
   setHierarchyLevel,
   setActiveCategory,

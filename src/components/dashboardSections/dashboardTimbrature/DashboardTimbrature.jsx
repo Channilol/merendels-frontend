@@ -3,7 +3,7 @@ import "./DashboardTimbrature.css";
 import TimbratureHistoryCard from "./timbratureHistoryCard/TimbratureHistoryCard";
 import { MdOutlineWork, MdOutlineHomeWork } from "react-icons/md";
 import { FiX } from "react-icons/fi";
-import { useAlert, alert } from "../../alert/Alert";
+import { useAlert } from "../../alert/Alert";
 
 export default function DashboardTimbrature() {
   const [timbratureHistory, setTimbratureHistory] = useState([]);
@@ -33,7 +33,7 @@ export default function DashboardTimbrature() {
       }
       const data = await response.json();
       if (data.data && data.data.length > 0) setTimbratureHistory(data.data);
-      console.log(data);
+      // console.log(data);
       return;
     } catch (error) {
       console.log("Errore imprevisto:", error);
@@ -64,7 +64,7 @@ export default function DashboardTimbrature() {
         throw new Error(`API Error: ${response.status} - ${errorData}`);
       }
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
       throw new Error("Errore imprevisto:", error);

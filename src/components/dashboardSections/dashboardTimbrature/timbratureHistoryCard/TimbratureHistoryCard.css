@@ -7,7 +7,7 @@
   width: 100%;
   padding: 12px;
   border-radius: var(--border-radius-m);
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--shadow-md);
   background-color: var(--bg);
 }
 
