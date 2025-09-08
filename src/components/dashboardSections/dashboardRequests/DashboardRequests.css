@@ -43,3 +43,113 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.requests-create-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.request-type-switch {
+  width: 400px;
+  padding: 12px;
+  background-color: var(--bg);
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.request-type-switch p {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 24px;
+  padding: 8px;
+  border-radius: var(--border-radius-m);
+  cursor: pointer;
+  transition: var(--transition-fluid);
+}
+
+.request-type-switch p:hover {
+  background-color: var(--border);
+}
+
+.request-type-switch .selected,
+.request-type-switch .selected:hover {
+  background-color: var(--primary);
+  color: var(--bg);
+}
+
+.request-date-title {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.request-date-container,
+.request-time-container {
+  display: flex;
+  gap: 24px;
+}
+
+.request-date-picker,
+.request-time-picker {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: var(--border-radius-m);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.request-date-picker:focus,
+.request-time-picker:focus {
+  box-shadow: var(--shadow-md);
+  outline: none;
+}
+
+.request-form-button {
+  margin-top: auto;
+  width: 300px;
+  padding: 12px;
+  border-radius: var(--border-radius-m);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--primary);
+  font-size: 20px;
+  color: var(--bg);
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition-fluid);
+}
+
+.request-form-button:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.request-form-button * {
+  color: var(--bg);
+}
+
+#request-notes {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: var(--border-radius-m);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  resize: none;
+  transition: var(--transition-fluid);
+}
+
+#request-notes:focus {
+  outline: none;
+  box-shadow: var(--shadow-md);
+}

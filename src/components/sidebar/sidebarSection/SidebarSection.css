@@ -24,7 +24,8 @@
 .sidebar-section svg *,
 .sidebar-section p {
   color: var(--bg);
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .sidebar-section.active {
@@ -34,5 +35,6 @@
 .sidebar-section.active svg *,
 .sidebar-section.active p {
   color: var(--text);
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 600;
 }

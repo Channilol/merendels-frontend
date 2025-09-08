@@ -6,6 +6,7 @@ import {
   FiClock,
   FiChevronRight,
   FiMessageSquare,
+  FiEdit3,
 } from "react-icons/fi";
 
 export default function RequestCard({ request }) {
@@ -87,6 +88,7 @@ export default function RequestCard({ request }) {
 
   // useEffect(() => {
   //   console.log(approval);
+  //   console.log(request);
   // }, [approval]);
 
   return (
@@ -106,9 +108,15 @@ export default function RequestCard({ request }) {
           : "In attesa di essere visionata"}
       </p>
       <div className="request-notes">
-        <FiMessageSquare size={24} />
+        {request.status === "PENDING" ? (
+          <FiEdit3 size={24} />
+        ) : (
+          <FiMessageSquare size={24} />
+        )}
         <p>
-          {approval[0] && approval[0].comments !== ""
+          {request.status === "PENDING"
+            ? request.notes
+            : approval[0] && approval[0].comments !== ""
             ? approval[0].comments
             : "Nessun commento"}
         </p>
