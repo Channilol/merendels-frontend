@@ -4,7 +4,6 @@ import Dashboard from "./views/dashboard/Dashboard";
 import { AlertProvider } from "./components/alert/Alert";
 
 function App() {
-  console.log(process.env.REACT_APP_BACKEND_URL);
   return (
     <BrowserRouter>
       <AlertProvider>

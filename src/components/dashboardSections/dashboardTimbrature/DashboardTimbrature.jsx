@@ -33,7 +33,6 @@ export default function DashboardTimbrature() {
       }
       const data = await response.json();
       if (data.data && data.data.length > 0) setTimbratureHistory(data.data);
-      // console.log(data);
       return;
     } catch (error) {
       console.log("Errore imprevisto:", error);
@@ -64,7 +63,6 @@ export default function DashboardTimbrature() {
         throw new Error(`API Error: ${response.status} - ${errorData}`);
       }
       const data = await response.json();
-      // console.log(data);
       return data;
     } catch (error) {
       throw new Error("Errore imprevisto:", error);

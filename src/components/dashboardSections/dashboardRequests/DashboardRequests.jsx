@@ -54,7 +54,6 @@ export default function DashboardRequests() {
       }
       const data = await response.json();
       setCreateReqStates(false, false, true);
-      console.log(`Request created: `, data);
       getUserRequests();
       return data;
     } catch (error) {
@@ -95,7 +94,6 @@ export default function DashboardRequests() {
       start_date: `${startDate}T${startTime}:00Z`,
       end_date: `${endDate}T${endTime}:59Z`,
     };
-    console.log(requestData);
     showAlert({
       title: `Conferma Richiesta ${request.request_type}`,
       description: `Vuoi confermare la richiesta di ${request.request_type} dal ${startDate} ${startTime} al ${endDate} ${endTime}?`,

@@ -10,7 +10,7 @@ import {
 } from "react-icons/fi";
 
 export default function RequestCard({ request }) {
-  const [approval, setApproval] = useState({});
+  const [approval, setApproval] = useState([]);
   const token = localStorage.getItem("token-merendels");
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -27,7 +27,7 @@ export default function RequestCard({ request }) {
       case "PENDING":
         return <FiClock size={28} />;
       default:
-        break;
+        return <FiClock size={28} />;
     }
   }
 
@@ -42,7 +42,7 @@ export default function RequestCard({ request }) {
       case "PENDING":
         return "In attesa";
       default:
-        break;
+        return "In attesa";
     }
   }
 
@@ -77,6 +77,7 @@ export default function RequestCard({ request }) {
       }
       const data = await response.json();
       if (data) setApproval(data.data);
+      console.log(data);
     } catch (error) {
       console.log(`Unexpected error: ${error}`);
     }
@@ -86,24 +87,25 @@ export default function RequestCard({ request }) {
     if (request.status !== "PENDING") getApproval();
   }, [request]);
 
-  // useEffect(() => {
-  //   console.log(approval);
-  //   console.log(request);
-  // }, [approval]);
-
   return (
     <div className="request-card">
-      <div className={`request-card-header ${request.status}`}>
+      <div
+        className={`request-card-header ${
+          request.status ? request.status : "PENDING"
+        }`}
+      >
         <span>
           {getStatusIcon(request.status)}
           {getStatusName(request.status)}{" "}
-          {request.status !== "PENDING" ? `da ${request.approver_name}` : null}
+          {request.status && request.status !== "PENDING"
+            ? `da ${request.approver_name}`
+            : null}
         </span>
         <p className="request-type">{request.request_type}</p>
       </div>
       <p className="request-approval-date">
         {" "}
-        {approval[0] && approval[0].approved_at !== ""
+        {approval && approval.length > 0 && approval[0].approved_at !== ""
           ? formatDateTime(approval[0].approved_at)
           : "In attesa di essere visionata"}
       </p>
@@ -116,7 +118,7 @@ export default function RequestCard({ request }) {
         <p>
           {request.status === "PENDING"
             ? request.notes
-            : approval[0] && approval[0].comments !== ""
+            : approval && approval.length > 0 && approval[0].comments !== ""
             ? approval[0].comments
             : "Nessun commento"}
         </p>

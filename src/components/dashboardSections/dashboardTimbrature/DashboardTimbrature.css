@@ -11,6 +11,18 @@
   padding: 12px;
 }
 
+.history-section h1,
+.create-timbrature-section h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  padding: 0 0 16px 0;
+  border-bottom: 1px solid var(--border);
+  width: 100%;
+  text-align: center;
+}
+
 .history-cards {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

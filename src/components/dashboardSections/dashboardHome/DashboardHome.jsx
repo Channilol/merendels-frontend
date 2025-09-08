@@ -19,10 +19,6 @@ export default function DashboardHome() {
     getUserStatus();
   }, []);
 
-  useEffect(() => {
-    console.log(userStatus);
-  }, [userStatus]);
-
   const getUserStatus = async () => {
     try {
       const response = await fetch(
@@ -33,6 +29,10 @@ export default function DashboardHome() {
         }
       );
       if (!response.ok) {
+        const errorData = await response.text();
+        console.log(
+          `Errore durante la chiamata API: ${response.status} ${errorData}`
+        );
       }
       const data = await response.json();
       if (data) setUserStatus(data.data);
@@ -51,6 +51,10 @@ export default function DashboardHome() {
         }
       );
       if (!response.ok) {
+        const errorData = await response.text();
+        console.log(
+          `Errore durante la chiamata API: ${response.status} ${errorData}`
+        );
       }
       const data = await response.json();
       if (data.data.name && data.data.name !== "")
@@ -62,7 +66,6 @@ export default function DashboardHome() {
 
   return (
     <div className="dashboard-home-container">
-      {/* Hero Section */}
       <div className="dashboard-hero-section">
         <div className="welcome-card">
           <h1 className="welcome-title">Bentornato</h1>
@@ -78,8 +81,8 @@ export default function DashboardHome() {
             ></div>
             <span className="status-text">
               {userStatus && userStatus.is_working
-                ? "In Lavoro"
-                : "Non in Lavoro"}
+                ? "Al Lavoro"
+                : "Non al Lavoro"}
             </span>
           </div>
         </div>
